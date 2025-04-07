@@ -46,7 +46,7 @@ namespace Assignment_2
 
             // Question 7: Palindrome Number
             Console.WriteLine("Question 7:");
-            int palindromeNumber = 121;
+            int palindromeNumber = 7;
             bool isPalindrome = IsPalindrome(palindromeNumber);
             Console.WriteLine(isPalindrome);
 
@@ -63,7 +63,16 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return new List<int>(); // Placeholder
+                List<int> missingNumbers = new List<int>();
+                HashSet<int> numSet = new HashSet<int>(nums);
+                for (int i = 1; i <= nums.Length; i++)
+                {
+                    if (!numSet.Contains(i))
+                    {
+                        missingNumbers.Add(i);
+                    }
+                }
+                return missingNumbers;
             }
             catch (Exception)
             {
@@ -77,7 +86,24 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return new int[0]; // Placeholder
+                int[] result = new int[nums.Length];
+                int evenIndex = 0;
+                int oddIndex = nums.Length - 1;
+
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] % 2 == 0)
+                    {
+                        result[evenIndex] = nums[i];
+                        evenIndex++;
+                    }
+                    else
+                    {
+                        result[oddIndex] = nums[i];
+                        oddIndex--;
+                    }
+                }
+                return result;
             }
             catch (Exception)
             {
@@ -91,7 +117,17 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return new int[0]; // Placeholder
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    for (int j = i + 1; j < nums.Length; j++)
+                    {
+                        if (nums[i] + nums[j] == target)
+                        {
+                            return new int[] { i, j };
+                        }
+                    }
+                }
+                return new int[] {};
             }
             catch (Exception)
             {
@@ -105,7 +141,10 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return 0; // Placeholder
+                Array.Sort(nums);
+                Array.Reverse(nums); // Sort in descending order
+                int maxProduct = nums[0] * nums[1] * nums[2];
+                return maxProduct;
             }
             catch (Exception)
             {
@@ -119,7 +158,19 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return "101010"; // Placeholder
+                if (decimalNumber == 0)
+                {
+                    return "0";
+                }
+                string binary= "";
+
+                while (decimalNumber > 0)
+                {
+                    int remainder = decimalNumber % 2;
+                    binary = remainder + binary;
+                    decimalNumber /= 2;
+                }
+                return binary;
             }
             catch (Exception)
             {
@@ -133,7 +184,8 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return 0; // Placeholder
+                Array.Sort(nums);  // sorting again and returning the first value works for this problem
+                return nums[0];
             }
             catch (Exception)
             {
@@ -147,7 +199,25 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return false; // Placeholder
+                if (x < 0) // negative numbers are not palindromes
+                {
+                    return false;
+                }
+                
+                string s = x.ToString();
+                int left = 0;
+                int right = s.Length - 1;
+
+                while (left < right)
+                {
+                    if (s[left] != s[right])
+                    {
+                        return false;
+                    }
+                    left++;
+                    right--;
+                }
+                return true; // true if all digits matched
             }
             catch (Exception)
             {
@@ -161,7 +231,21 @@ namespace Assignment_2
             try
             {
                 // Write your code here
-                return 0; // Placeholder
+                if (n <=1)
+                {
+                    return n; // F(0) = 0, F(1) = 1
+                }
+
+                int a = 0;
+                int b = 1;
+                for (int i = 2; i <= n; i++)
+                {
+                    int temp = b;
+                    b = a + b; // F(n) = F(n-1) + F(n-2)
+                    a = temp;
+                }
+                return b; // return F(n)
+
             }
             catch (Exception)
             {
