@@ -1,0 +1,1 @@
+Had trouble committing and pushing previously. Tried reverting commit/push in Visual Studio, losing all traces of solutions added. Managed to restore them by undoing the revert, and commit/push again.
